@@ -6,7 +6,7 @@ const {encode: encodeQuery} = require('querystring')
 const {strictEqual} = require('assert')
 const envPaths = require('env-paths')
 const FileCache = require('@derhuerst/http-basic/lib/FileCache').default
-const {extname} = require('path')
+const {extname, dirname} = require('path')
 var ProgressBar = require("progress");
 var request = require('@derhuerst/http-basic')
 const {createGunzip} = require('zlib')
@@ -168,6 +168,7 @@ const downloadUrl = `${baseUrl}/${platform}-${arch}.gz`
 const readmeUrl = `${baseUrl}/${platform}-${arch}.README`
 const licenseUrl = `${baseUrl}/${platform}-${arch}.LICENSE`
 
+fs.mkdirSync(dirname(ffmpegPath), { recursive: true });
 downloadFile(downloadUrl, ffmpegPath, onProgress)
 .then(() => {
   fs.chmodSync(ffmpegPath, 0o755) // make executable

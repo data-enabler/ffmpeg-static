@@ -18,6 +18,9 @@ if (process.env.FFMPEG_BIN) {
 
   var ffmpegPath = path.join(
     __dirname,
+    'bin',
+    platform,
+    arch,
     platform === 'win32' ? 'ffmpeg.exe' : 'ffmpeg'
   )
 
